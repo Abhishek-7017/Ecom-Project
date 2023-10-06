@@ -29,6 +29,12 @@
       "password": "abc@123",
       "email": "seller@test.com",
       "id": 5
+    },
+    {
+      "name": "abh",
+      "password": "abc@123",
+      "email": "abh@test.com",
+      "id": 6
     }
   ]
 }
