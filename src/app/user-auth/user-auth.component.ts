@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SignUp } from '../data.type';
 import { UserService } from '../services/user.service';
 
@@ -7,9 +7,15 @@ import { UserService } from '../services/user.service';
   templateUrl: './user-auth.component.html',
   styleUrls: ['./user-auth.component.css']
 })
-export class UserAuthComponent {
+export class UserAuthComponent implements OnInit {
+  
   constructor(private user:UserService){}
-  SignUp(val:SignUp){
-    this.user.userSignUp(val)
+
+  ngOnInit(): void {
+    this.user.userAuthReload();
+  }
+
+  SignUp(userSignUp:SignUp){
+    this.user.userSignUp(userSignUp)
   }
 }
