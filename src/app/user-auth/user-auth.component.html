@@ -1,10 +1,28 @@
 <div class="user-auth">
-    <h1>User Sign-Up</h1>
-    <form #userSignUp="ngForm" (ngSubmit)="SignUp(userSignUp.value)" class="common-form">
-        <input class="common-input" ngModel name="name" type="text" placeholder="Enter Name">
-        <input class="common-input" ngModel name="password" type="password" placeholder="Enter Password">
-        <input class="common-input" ngModel name="email" type="text" placeholder="Enter Email">
-        <button class="common-button">SignUp</button>
-    </form>
+    <div class="user-signUp" *ngIf="OpenSignUpPage">
+        <h1>User Sign-Up</h1>
+        <form #userSignUp="ngForm" (ngSubmit)="SignUp(userSignUp.value)" class="common-form">
+            <input class="common-input" ngModel name="name" type="text" placeholder="Enter Name">
+            <input class="common-input" ngModel name="password" type="password" placeholder="Enter Password">
+            <input class="common-input" ngModel name="email" type="text" placeholder="Enter Email">
+            <p>Already have an Account? <a (click)="openLogin()">Click Here</a></p>
+            <button class="common-button">SignUp</button>
+        </form>
+    </div>
+    <div class="user-login" *ngIf="!OpenSignUpPage">
+        <h1>User Login</h1>
+        <form #userLogin="ngForm" (ngSubmit)="login(userLogin.value)" class="common-form">
+            <p class="error-p">{{authError}}</p>
+            <input class="common-input" #email="ngModel" email="" required ngModel name="email" type="text"
+                placeholder="Enter Email">
+            <p class="invalid-input"> <span *ngIf="email.invalid && email.touched">Please Enter Valid Value</span></p>
+            <input class="common-input" #password="ngModel" required minlength="2" maxlength="20" ngModel
+                name="password" type="password" placeholder="Enter Password">
+            <p class="invalid-input"><span *ngIf="password.invalid && password.touched">Please Enter Valid Password</span></p>
+            <p>Want to create Account? <a (click)="openSignUp()">Click Here</a></p>
+            <button [disabled]="userLogin.invalid" class="common-button">Login</button>
+        </form>
+    </div>
+
 
 </div>
