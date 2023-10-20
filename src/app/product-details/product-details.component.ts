@@ -26,7 +26,21 @@ export class ProductDetailsComponent implements OnInit {
       items = items.filter((item:Product)=>item.id.toString() == productId)
       if(items.length){
         this.removeCart = true;
+      }else{
+        this.removeCart = false;
       }
+    }
+
+    let user = localStorage.getItem('user');
+    if(user){
+      let userId = user && JSON.parse(user);
+      this.product.getCartDetails(userId)
+      this.product.cartData.subscribe((result)=>{
+        let items = result.filter((item:Product)=>productId?.toString() === item.productId?.toString())
+        if(items.length){
+          this.removeCart = true;
+        }
+      })
     }
   }
   handleQuantity(val: string) {
@@ -52,7 +66,10 @@ export class ProductDetailsComponent implements OnInit {
         }
         delete cartData.id;
         this.product.addToCart(cartData).subscribe((result)=>{
-          console.warn(result)
+          if(result){
+            this.product.getCartDetails(userId);
+            this.removeCart = true;
+          }
         })
       }
     }
