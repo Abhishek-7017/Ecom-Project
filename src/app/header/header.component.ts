@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   sellerName: string = '';
   searchResult: undefined | Product[];
   userName: string = '';
+  cartItems: number = 0;
   constructor(private route: Router, private product: ProductService) { }
 
   ngOnInit(): void {
@@ -20,14 +21,14 @@ export class HeaderComponent implements OnInit {
       (val: any) => {
         if (val.url) {
           if (localStorage.getItem('seller') && val.url.includes('seller')) {
-              let sellerStore = localStorage.getItem('seller');
-              let sellerData = sellerStore && JSON.parse(sellerStore)[0];
-              this.sellerName = sellerData.name;
-              this.menuType = 'seller';
-              //console.warn(sellerData);
-              
+            let sellerStore = localStorage.getItem('seller');
+            let sellerData = sellerStore && JSON.parse(sellerStore)[0];
+            this.sellerName = sellerData.name;
+            this.menuType = 'seller';
+            //console.warn(sellerData);
+
           } else if (localStorage.getItem('user')) {
-            
+
             let userStore = localStorage.getItem('user');
             let userData = userStore && JSON.parse(userStore);
             console.warn(userData);
@@ -39,6 +40,13 @@ export class HeaderComponent implements OnInit {
 
         }
       })
+    let cartData = localStorage.getItem('localCart');
+    if (cartData) {
+      this.cartItems = JSON.parse(cartData).length;
+    }
+    this.product.cartData.subscribe((items)=>{
+      this.cartItems = items.length;
+    })
   }
 
   logout() {
@@ -65,7 +73,7 @@ export class HeaderComponent implements OnInit {
   redirectToDetails(id: number) {
     this.route.navigate(['/details/' + id]);
   }
-  userLogout(){
+  userLogout() {
     localStorage.removeItem('user');
     this.route.navigate(['/']);
   }
