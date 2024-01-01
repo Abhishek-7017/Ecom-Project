@@ -30,3 +30,18 @@ export interface cart{
     productId:number,
     userId:number
 }
+export interface priceSummary{
+    price:number,
+    tax:number,
+    delivery:number,
+    discount:number,
+    total:number
+}
+export interface order{
+    email:string,
+    address:string,
+    contact:string,
+    totalPrice:number,
+    userId:number,
+    id:number|undefined
+}
