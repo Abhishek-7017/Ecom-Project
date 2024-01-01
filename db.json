@@ -99,50 +99,17 @@
       "password": "abc@123",
       "email": "test@user.com",
       "id": 4
-    },
-    {
-      "name": "test",
-      "password": "abc@123",
-      "email": "test@user.com",
-      "id": 5
     }
   ],
-  "cart": [
+  "cart": [],
+  "orders": [
     {
-      "name": "Nothing 2",
-      "price": "45000",
-      "color": "grey",
-      "category": "mobile",
-      "description": "nice product",
-      "image": "https://fdn2.gsmarena.com/vv/pics/nothing/nothing-phone2-1_.jpg",
-      "quantity": 1,
+      "email": "test@user.com",
+      "address": "abc",
+      "contact": "3333",
+      "totalPrice": 528100,
       "userId": 4,
-      "productId": 1,
       "id": 1
-    },
-    {
-      "name": "Nothing 2",
-      "price": "45000",
-      "color": "grey",
-      "category": "mobile",
-      "description": "nice product",
-      "image": "https://fdn2.gsmarena.com/vv/pics/nothing/nothing-phone2-1_.jpg",
-      "quantity": 1,
-      "userId": 4,
-      "productId": 1,
-      "id": 2
-    },
-    {
-      "name": "MI A3",
-      "price": "14000",
-      "color": "white",
-      "category": "mobile",
-      "description": "nice phone",
-      "image": "https://i01.appmifile.com/webfile/globalimg/in/cms/E10CC004-1FDD-F63D-E83F-A02872319A0E.jpg",
-      "quantity": 1,
-      "userId": 4,
-      "productId": 2,
-      "id": 3
     }
   ]
 }
